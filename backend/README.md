@@ -7,6 +7,7 @@ TypeScript Express service to accept a selfie (JPG) and options, create an avata
 ```bash
 cd backend
 cp .env.example .env
+# Set PROVIDER=didimo and PROVIDER_API_KEY in .env
 npm install
 npm run dev
 ```
@@ -16,6 +17,9 @@ npm run dev
 - GET /avatar/jobs/:id
 - GET /avatar/assets/:assetId
 
+## Provider
+- Current wired provider: **Didimo** (stubbed calls). Replace stubs in `src/vendor/providerClient.ts` with real API endpoints and auth headers.
+
 ## Notes
-- Provider client is pluggable; default is a stub you can swap for a real provider.
 - Assets are saved to `STORAGE_DIR` (default `storage`).
+- `/local/*` serves stored files in dev.
