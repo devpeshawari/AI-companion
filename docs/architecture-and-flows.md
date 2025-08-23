@@ -1,10 +1,11 @@
 # Architecture and Flows — Photoreal Avatar Route
 
 ## High-Level Components
-- Frontend (Web/PWA): React + Three.js viewer, questionnaire, upload
+- Frontend (Web/PWA): React + Three.js viewer, streaming player, questionnaire, upload
 - Backend API: Node/Express or FastAPI; avatar job proxy; storage; auth (optional)
 - Avatar Provider: Avatar SDK / in3D / Didimo (trial)
 - Storage: S3-compatible bucket for GLB + textures
+- Streaming Host (optional): Unreal Engine Pixel Streaming + Signaling Server
 
 ## Data Flow (Avatar Generation)
 
@@ -49,6 +50,22 @@ sequenceDiagram
   FE: Three.js GLTFLoader → render
 ```
 
+## Data Flow (Streaming Mode)
+
+```mermaid
+sequenceDiagram
+  participant FE as Frontend (Player)
+  participant SS as Signaling Server
+  participant UE as Unreal App (Pixel Streaming)
+
+  FE->>SS: Connect (HTTP/WS)
+  SS-->>FE: Offer player page + signaling
+  FE->>UE: WebRTC offer via SS
+  UE-->>FE: WebRTC answer via SS
+  UE-->>FE: Media stream (video+audio)
+  FE->>UE: DataChannel messages (prompts/visemes/gestures)
+```
+
 ## Component Diagram
 
 ```mermaid
@@ -56,16 +73,21 @@ graph TD
   subgraph Client
     A[React UI]
     B[Three.js Viewer]
+    P[Streaming Player]
   end
   subgraph Server
     C[Backend API]
     D[(DB: users, jobs)]
     E[(S3 Storage)]
+    S[Signaling Server]
+    U[Unreal Pixel Streaming]
   end
   F[Avatar Provider API]
 
   A -->|Upload, poll| C
   B -->|Download GLB| E
+  P -->|WebRTC| S
+  S --> U
   C -->|Create job| F
   C -->|Cache asset| E
   C --> D

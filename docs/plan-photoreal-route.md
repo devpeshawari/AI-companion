@@ -63,4 +63,30 @@ Pick the one with: (1) trial credits, (2) GLB export, (3) ARKit or standardized 
 - Day 1: provider integration + first GLB
 - Day 2: web viewer + toggles + idle realism; write docs
 
+## Dual Approach Plan (Client Render + Streaming)
+
+We will support two delivery modes in parallel:
+
+### Track A — Client‑side Rendering (default)
+- Scope: Three.js viewer renders GLB on device; lip‑sync later
+- Targets: low/mid phones; 30–60 fps
+- Milestones:
+  1) Optimize asset (≤100k tris, KTX2, Draco/Meshopt)
+  2) Viewer with env‑light, no shadows, DPR clamp to 0.75–1.0
+  3) Idle realism (blink/head sway); property toggles
+  4) Optional viseme mixer (A/E/I/O/U + jawOpen)
+
+### Track B — Streaming (Pixel Streaming, optional premium)
+- Scope: Unreal Engine renders MetaHuman; browser receives WebRTC stream
+- Targets: high‑end phones/Wi‑Fi/5G; 720p30 baseline
+- Milestones:
+  1) UE project with MetaHuman; enable Pixel Streaming plugin
+  2) Package build; run signaling server; 720p NVENC/VP8
+  3) Basic lip‑sync in UE (Oculus LipSync or viseme curves)
+  4) Frontend toggle to switch to streaming mode when bandwidth allows
+
+### Release Strategy
+- Default to Track A for everyone; detect network and device for Track B opt‑in.
+- Keep identical UI across modes; only the rendering source changes.
+
 
