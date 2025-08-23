@@ -1,0 +1,35 @@
+# Glossary
+
+- **ARKit blendshapes**: ~52 standard facial morph targets (e.g., `jawOpen`, `mouthSmile`) used for expressions and lip‑sync.
+- **Avatar Provider**: Service that turns selfies into rigged 3D avatars (e.g., Avatar SDK, in3D, Didimo) via API.
+- **Basis/KTX2**: GPU texture compression that reduces download size and VRAM while preserving quality.
+- **Blendshape / Morph target**: Predefined mesh deformation (e.g., `mouthPucker`) controlled by a 0–1 weight.
+- **Client render**: Rendering a 3D model locally in the browser using WebGL/Three.js.
+- **Draco / Meshopt**: Geometry compression for glTF/GLB that shrinks model size and speeds loading.
+- **DPR (device pixel ratio)**: Screen pixel density factor; clamping lowers GPU workload on mobile.
+- **Env map / PMREM**: Image‑based lighting; PMREM is a prefiltered env map for realistic reflections.
+- **FAISS / pgvector**: Vector search tools for memory/RAG (not required for rendering itself).
+- **GLB / glTF**: Web‑friendly 3D formats; GLB is the binary, single‑file form of glTF.
+- **GPU memory budget**: Total VRAM used by meshes/textures; must be limited on mobile to keep FPS.
+- **Idle realism**: Small automatic motions (blinks, eye saccades, head sway) to avoid a static look.
+- **KTX2**: Container for compressed textures commonly used inside glTF.
+- **LLM**: Large Language Model used to generate conversational text.
+- **MBP / FV**: Viseme groups—MBP for closed‑lip sounds (M/B/P), FV for teeth‑lip sounds (F/V).
+- **Mermaid**: Text DSL for diagrams (sequence/component/flow) inside Markdown.
+- **MetaHuman**: Epic’s high‑fidelity digital humans for Unreal Engine (licensed for UE use).
+- **Morph target influences**: Array of weights in Three.js applied to morph targets each frame.
+- **NVENC / VP8**: Video encoders; NVENC is NVIDIA hardware encoding, VP8 is a common WebRTC codec.
+- **Pixel Streaming**: Unreal feature that streams rendered video to the browser via WebRTC with a data channel.
+- **Piper / Coqui / ElevenLabs**: Text‑to‑Speech engines; may provide phoneme/viseme timings.
+- **S3**: Object storage (AWS or compatible) for assets like GLB and textures.
+- **Sequencer**: Unreal timeline tool for keyframing and composing animations.
+- **Signaling server**: Coordinates WebRTC session setup between browser and Unreal streamer.
+- **STT**: Speech‑to‑Text (e.g., Whisper/faster‑whisper) converting speech audio to text.
+- **Three.js**: JavaScript 3D library for WebGL rendering in browsers.
+- **TTS**: Text‑to‑Speech; converts text into voice audio for the avatar.
+- **UE / Unreal Engine**: 3D engine used for MetaHuman and Pixel Streaming rendering.
+- **VAD**: Voice Activity Detection; detects when someone starts/stops speaking.
+- **Viseme**: Visual counterpart of a phoneme used to drive mouth shapes during speech.
+- **VRM**: Web avatar format with standard facial blendshape names (A/I/U/E/O, blink).
+- **WebGL2**: Modern browser graphics API used by Three.js.
+- **WebRTC**: Real‑time audio/video/data protocol for low‑latency streaming.
