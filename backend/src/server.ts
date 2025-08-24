@@ -4,11 +4,11 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import avatarRouter from './routes/avatar.routes';
+import jwtAuthRouter from './routes/jwt-auth.routes';
 
-const app: express.Application = express();
+const app = express();
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
-
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,6 +21,7 @@ app.use('/local', express.static(storageDir));
 app.get('/health', (_req, res) => res.json({ ok: true }));
 
 // routes
+app.use('/auth', jwtAuthRouter);
 app.use('/avatar', avatarRouter);
 
 const PORT = Number(process.env.PORT || 8080);
