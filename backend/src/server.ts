@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import avatarRouter from './routes/avatar.routes';
 
-const app = express();
+const app: express.Application = express();
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 
